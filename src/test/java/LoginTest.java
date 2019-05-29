@@ -11,4 +11,17 @@ public class LoginTest extends BaseTest {
                 .clickOnLoginButton();
     }
 
+    @Test
+    public void createProject() {
+        LoginOptions loginOptions = new LoginOptions(driver);
+        loginOptions.clickLoginWithEmail()
+                .EnterEmailId(prop.getEmailId())
+                .clickOnLoginWithEmailBtn()
+                .enterPassword(prop.getPassword())
+                .clickOnLoginButton()
+                .openLeftPanel()
+                .expandProject()
+                .verifyProjectByName("Javed");
+    }
+
 }

@@ -32,6 +32,7 @@ public class BaseTest extends AppiumServer {
         cap.setCapability("platformVersion", prop.getPlatformVersion());
         cap.setCapability("appPackage", prop.getAppPackage());
         cap.setCapability("appActivity", prop.getAppActivity());
+        cap.setCapability("newCommandTimeout", 600 * 5);
         driver = new AndroidDriver<MobileElement>(getServiceUrl(), cap);
         wait = new WebDriverWait(driver, 20);
     }
@@ -46,4 +47,24 @@ public class BaseTest extends AppiumServer {
         return (AndroidElement) new WebDriverWait(driver, 30).
                 until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
     }
+
+    public AndroidElement findElementByXpath(String xPath) {
+        return (AndroidElement) new WebDriverWait(driver, 30).
+                until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xPath)));
+    }
+
+    public AndroidElement findElementByClass(String className) {
+        return (AndroidElement) new WebDriverWait(driver, 30).
+                until(ExpectedConditions.visibilityOfElementLocated(By.className(className)));
+    }
+
+    public void waitUntilElementAppears(AndroidElement element) {
+        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void waitUntilElementDisappears(AndroidElement element) {
+        new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOf(element));
+    }
+
+
 }
