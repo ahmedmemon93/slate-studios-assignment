@@ -7,6 +7,21 @@
     <groupId>com.slate.studios</groupId>
     <artifactId>slate.studios.assignment</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-
+    <properties>
+        <APPIUM-ClIENT-VERSION>7.0.0</APPIUM-ClIENT-VERSION>
+        <TESTNG-VERSION>6.8</TESTNG-VERSION>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${APPIUM-ClIENT-VERSION}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${TESTNG-VERSION}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>

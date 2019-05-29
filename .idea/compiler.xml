@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="slate-studios-assignment" />
+        <module name="slate.studios.assignment" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="slate.studios.assignment" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
