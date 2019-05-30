@@ -5,7 +5,7 @@ public class LoginTest extends BaseTest {
     public void loginToToDo() {
         LoginOptions loginOptions = new LoginOptions(driver);
         loginOptions.clickLoginWithEmail()
-                .EnterEmailId(prop.getEmailId())
+                .enterEmailId(prop.getEmailId())
                 .clickOnLoginWithEmailBtn()
                 .enterPassword(prop.getPassword())
                 .clickOnLoginButton();
@@ -15,13 +15,31 @@ public class LoginTest extends BaseTest {
     public void createProject() {
         LoginOptions loginOptions = new LoginOptions(driver);
         loginOptions.clickLoginWithEmail()
-                .EnterEmailId(prop.getEmailId())
+                .enterEmailId(prop.getEmailId())
                 .clickOnLoginWithEmailBtn()
                 .enterPassword(prop.getPassword())
                 .clickOnLoginButton()
                 .openLeftPanel()
                 .expandProject()
                 .verifyProjectByName("Javed");
+    }
+
+    @Test
+    public void createTask(){
+        LoginOptions loginOptions = new LoginOptions(driver);
+        loginOptions
+                .clickLoginWithEmail()
+                .login(prop.getEmailId(),prop.getPassword())
+//                .openLeftPanel()
+//                .openProjectByName("Javed")
+//                .clickOnAddTaskBtn()
+//                .enterTaskDetailMessage("This is test task")
+//                .addScheduleDate()
+//                .addPriority()
+//                .addPerson()
+//                .addProject()
+//                .clickOnAddButton()
+                .verifyTaskIsPresentInList("This is test task");
     }
 
 }

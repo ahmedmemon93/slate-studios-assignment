@@ -8,7 +8,12 @@ public class SidePanel extends BaseTest {
     }
 
     public SidePanel expandProject() {
-        findElementByXpath("(//android.widget.ImageView[@content-desc=\"Expand/collapse\"])[1]").click();
+        expandItemByName("Projects");
+        return this;
+    }
+
+    public SidePanel expandItemByName(String itemNameToExpand){
+        findElementByXpath("//android.widget.RelativeLayout/android.widget.TextView[@text='"+itemNameToExpand+"']/following-sibling::android.widget.ImageView").click();
         return this;
     }
 
@@ -19,7 +24,18 @@ public class SidePanel extends BaseTest {
         return this;
     }
 
+    public MainTaskList clickOnProjectByName(String projectName) {
+        verifyProjectByName(projectName);
+        findElementByXpath("//android.widget.RelativeLayout/android.widget.TextView[@text='" + projectName + "']").click();
+        return new MainTaskList(driver);
+    }
+
     public void addProject() {
         findElementById("com.todoist:id/add").click();
+    }
+
+    public MainTaskList openProjectByName(String projectName){
+        expandProject();
+        return clickOnProjectByName("Javed");
     }
 }
