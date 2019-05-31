@@ -6,9 +6,6 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Dimension;
 
-import java.time.Duration;
-
-
 public class Scroller {
 
     public void scrollDown(AndroidDriver driver){
@@ -21,7 +18,6 @@ public class Scroller {
 
         new TouchAction((PerformsTouchActions) driver)
                 .press(PointOption.point(0,scrollStart))
-                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
                 .moveTo(PointOption.point(0,scrollEnd))
                 .release().perform();
 

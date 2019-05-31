@@ -10,10 +10,11 @@ import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class BaseTest extends AppiumServer {
-    public static AndroidDriver<MobileElement> driver;
-    public WebDriverWait wait;
+    public static AndroidDriver<AndroidElement> driver;
+    public static WebDriverWait wait;
     protected static PropertiesLoader prop;
 
     @BeforeMethod
@@ -33,8 +34,10 @@ public class BaseTest extends AppiumServer {
         cap.setCapability("appPackage", prop.getAppPackage());
         cap.setCapability("appActivity", prop.getAppActivity());
         cap.setCapability("newCommandTimeout", 600 * 5);
-        driver = new AndroidDriver<MobileElement>(getServiceUrl(), cap);
+        driver = new AndroidDriver<AndroidElement>(getServiceUrl(), cap);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 20);
+        driver.resetApp();
     }
 
     @AfterMethod
@@ -44,26 +47,29 @@ public class BaseTest extends AppiumServer {
     }
 
     public AndroidElement findElementById(String id) {
-        return (AndroidElement) new WebDriverWait(driver, 30).
+        return (AndroidElement) wait.
                 until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
+    }
+    public AndroidElement waitForElement(AndroidElement element) {
+       return (AndroidElement) wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public AndroidElement findElementByXpath(String xPath) {
-        return (AndroidElement) new WebDriverWait(driver, 30).
+        return (AndroidElement) wait.
                 until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xPath)));
     }
 
     public AndroidElement findElementByClass(String className) {
-        return (AndroidElement) new WebDriverWait(driver, 30).
+        return (AndroidElement) wait.
                 until(ExpectedConditions.visibilityOfElementLocated(By.className(className)));
     }
 
     public void waitUntilElementAppears(AndroidElement element) {
-        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public void waitUntilElementDisappears(AndroidElement element) {
-        new WebDriverWait(driver, 30).until(ExpectedConditions.invisibilityOf(element));
+        wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
 

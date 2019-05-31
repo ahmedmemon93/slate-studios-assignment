@@ -1,35 +1,46 @@
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.aspectj.weaver.ast.And;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginWithEmail extends BaseTest {
 
+    @FindBy(id = "com.todoist:id/email_exists_input")
+    private AndroidElement emailIdInput;
+    @FindBy(id = "com.todoist:id/btn_continue_with_email")
+    private AndroidElement loginWithEmailBtn;
+    @FindBy(id = "com.todoist:id/log_in_password")
+    private AndroidElement passwordField;
+    @FindBy (id = "com.todoist:id/btn_log_in")
+    private AndroidElement loginBtn;
+    @FindBy (id = "android:id/button2")
+    private AndroidElement alertBtn;
     public LoginWithEmail(AndroidDriver driver) {
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
     public LoginWithEmail enterEmailId(String emailId) {
-        AndroidElement emailIdInput = findElementById("com.todoist:id/email_exists_input");
         emailIdInput.sendKeys(emailId);
         return this;
     }
 
     public LoginWithEmail clickOnLoginWithEmailBtn() {
-        findElementById("com.todoist:id/btn_continue_with_email").click();
+        loginWithEmailBtn.click();
         return this;
     }
 
     public LoginWithEmail enterPassword(String password) {
-        findElementById("com.todoist:id/log_in_password").sendKeys(password);
+        passwordField.sendKeys(password);
         return this;
     }
 
     public MainTaskList clickOnLoginButton() {
-        findElementById("com.todoist:id/btn_log_in").click();
-//        waitUntilElementAppears(findElementById("android:id/navigationBarBackground"));
-        waitUntilElementDisappears(findElementById("android:id/navigationBarBackground"));
+        loginBtn.click();
+        waitUntilElementDisappears(driver.findElementById("android:id/progress"));
         if (driver.findElementById("com.todoist:id/alertTitle").isDisplayed()) {
-            findElementById("android:id/button2").click();
+            alertBtn.click();
         }
         return new MainTaskList(driver);
     }
