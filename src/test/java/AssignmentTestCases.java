@@ -1,17 +1,13 @@
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.Test;
-import pages.BaseTest;
 
 /**
  * This is test class and all the given 3 test cass will start from here.
  * If you want to add any new test case you can add here or create new similar class.
  */
-import java.io.File;
-import java.io.IOException;
 
 public class AssignmentTestCases extends BaseTest {
+    String testTaskName = "TestTask_" + getDateTime();
+
     @Test
     public void loginToToDo() {
         LoginOptions loginOptions = new LoginOptions(driver);
@@ -42,44 +38,36 @@ public class AssignmentTestCases extends BaseTest {
                 .clickLoginWithEmail()
                 .login(prop.getEmailId(), prop.getPassword())
                 .openLeftPanel()
-                .openProjectByName("Javed")
+                .openProjectByName(testTaskName)
                 .clickOnAddTaskBtn()
-                .enterTaskDetailMessage("This is test task")
+                .enterTaskDetailMessage(testTaskName)
                 .addScheduleDate()
                 .addPriority()
                 .addPerson()
                 .addProject()
                 .clickOnAddButton()
-                .verifyTaskIsPresentInList("This is test task");
+                .verifyTaskIsPresentInList(testTaskName);
     }
 
     @Test
     public void reOpenTask() {
-        try {
-            LoginOptions loginOptions = new LoginOptions(driver);
-            loginOptions
-                    .clickLoginWithEmail()
-                    .login(prop.getEmailId(), prop.getPassword())
-                    .openLeftPanel()
-                    .openProjectByName("Javed")
-                    .clickOnAddTaskBtn()
-                    .enterTaskDetailMessage("This is test task")
-                    .addScheduleDate()
-                    .clickOnAddButton()
-                    .clickOnTaskByName("This is test task")
-                    .completeTask()
-                    .goToCompleteTask()
-                    .selectTaskByName()
-                    .clickOnUncompleteTaskBtn();
-        } catch (Exception e) {
-            e.printStackTrace();
-            File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            try {
-                FileUtils.copyFile(file, new File("Screenshot.jpg"));
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
+        LoginOptions loginOptions = new LoginOptions(driver);
+        loginOptions
+                .clickLoginWithEmail()
+                .login(prop.getEmailId(), prop.getPassword())
+                .openLeftPanel()
+                .openProjectByName("Javed")
+                .clickOnAddTaskBtn()
+                .enterTaskDetailMessage(testTaskName)
+                .addScheduleDate()
+                .clickOnAddButton()
+                .clickOnTaskByName(testTaskName)
+                .completeTask()
+                .goToCompleteTask()
+                .selectTaskByName(testTaskName)
+                .clickOnUncompleteTaskBtn()
+                .clickOnBackBtn()
+                .clickOnTaskByName(testTaskName);// this will verify that whether the task is moved to list or not
     }
 
 }

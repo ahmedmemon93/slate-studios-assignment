@@ -1,7 +1,6 @@
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import pages.BaseTest;
 
 /**
  * This is left panel page class, which contains list of projects, counts of task, selecting project by name etc

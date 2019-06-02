@@ -1,0 +1,7 @@
+<suite name="Slate-Studios-Suite">
+    <test name="Slate-Studios-Test">
+        <classes>
+            <class name="AssignmentTestCases" />
+        </classes>
+    </test>
+</suite>

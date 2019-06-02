@@ -1,4 +1,3 @@
-package pages;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;
@@ -10,6 +9,8 @@ import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -79,5 +80,13 @@ public class BaseTest extends AppiumServer {
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
+    /**
+     * This will return date + time mostly will be used to append at the end of string to make unique entries for task/projects
+     *
+     * @return
+     */
+    public String getDateTime() {
+        return  new SimpleDateFormat("ddMMyyhhmmss").format(new Date());
+    }
 
 }

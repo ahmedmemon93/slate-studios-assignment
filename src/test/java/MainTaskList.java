@@ -5,8 +5,6 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import pages.AddTask;
-import pages.BaseTest;
 
 import java.util.List;
 
