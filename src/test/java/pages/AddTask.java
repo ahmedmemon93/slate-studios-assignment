@@ -1,11 +1,16 @@
+package pages;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.aspectj.weaver.ast.And;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+/**
+ * This class will handle all the actions related to adding a task,
+ * Once user clicks on + to add the task this class will be called.
+ */
 public class AddTask extends BaseTest {
     @FindBy(id = "android:id/message")
     private AndroidElement taskMessageInput;
@@ -54,8 +59,8 @@ public class AddTask extends BaseTest {
 
     public MainTaskList clickOnAddButton() {
         addTaskArrowBtn.click();
-        addTaskArrowBtn.click();
-        Assert.assertTrue(new MainTaskList(driver).getAddTaskBtn().isDisplayed(), "Add Task button not displayed after closing task creation");
-        return new MainTaskList(driver);
+        addTaskArrowBtn.click(); // second click will close the add task UI
+        Assert.assertTrue(new MainTaskList(BaseTest.driver).getAddTaskBtn().isDisplayed(), "Add Task button not displayed after closing task creation");
+        return new MainTaskList(BaseTest.driver);
     }
 }

@@ -1,12 +1,15 @@
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.aspectj.weaver.ast.And;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pages.BaseTest;
 
 public class LoginWithEmail extends BaseTest {
 
+    /**
+     * This class has options related to login with email e.g EmailId/ Password/ Login button
+     */
     @FindBy(id = "com.todoist:id/email_exists_input")
     private AndroidElement emailIdInput;
     @FindBy(id = "com.todoist:id/btn_continue_with_email")

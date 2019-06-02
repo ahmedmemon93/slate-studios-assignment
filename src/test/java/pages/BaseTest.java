@@ -1,4 +1,4 @@
-import io.appium.java_client.MobileElement;
+package pages;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;
@@ -12,6 +12,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This is baseTest class and all other screen classes should be inherited from this class,
+ * This class will take care of setting up device emulator,
+ * You can find element based on wait time until element appears. All common supported methods can be added here
+ * to reuse in all the page classes.
+ */
 public class BaseTest extends AppiumServer {
     public static AndroidDriver<AndroidElement> driver;
     public static WebDriverWait wait;
@@ -50,8 +56,9 @@ public class BaseTest extends AppiumServer {
         return (AndroidElement) wait.
                 until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
     }
+
     public AndroidElement waitForElement(AndroidElement element) {
-       return (AndroidElement) wait.until(ExpectedConditions.visibilityOf(element));
+        return (AndroidElement) wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public AndroidElement findElementByXpath(String xPath) {

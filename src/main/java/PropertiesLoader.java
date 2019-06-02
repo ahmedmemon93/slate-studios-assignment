@@ -2,6 +2,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * This class is used to load the properties files from config.properties  and store into variable.
+ * There is no other logic in this class, just read properties files from resource folder and assign
+ * the values to the respective variables.
+ */
+
 public class PropertiesLoader {
     private Properties prop;
     private String deviceName;
@@ -20,6 +26,9 @@ public class PropertiesLoader {
         loadProperties();
     }
 
+    /**
+     * The constructor will do the job of assigning properties values to variables.
+     */
     private void loadProperties() {
         InputStream fileInput = getClass().getClassLoader().getResourceAsStream("config.properties");
         try {

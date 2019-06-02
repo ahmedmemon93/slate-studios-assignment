@@ -1,13 +1,17 @@
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
+import pages.BaseTest;
 
+/**
+ * This is test class and all the given 3 test cass will start from here.
+ * If you want to add any new test case you can add here or create new similar class.
+ */
 import java.io.File;
 import java.io.IOException;
 
-public class LoginTest extends BaseTest {
+public class AssignmentTestCases extends BaseTest {
     @Test
     public void loginToToDo() {
         LoginOptions loginOptions = new LoginOptions(driver);
@@ -32,11 +36,11 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void createTask(){
+    public void createTask() {
         LoginOptions loginOptions = new LoginOptions(driver);
         loginOptions
                 .clickLoginWithEmail()
-                .login(prop.getEmailId(),prop.getPassword())
+                .login(prop.getEmailId(), prop.getPassword())
                 .openLeftPanel()
                 .openProjectByName("Javed")
                 .clickOnAddTaskBtn()
@@ -50,7 +54,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void reOpenTask(){
+    public void reOpenTask() {
         try {
             LoginOptions loginOptions = new LoginOptions(driver);
             loginOptions
@@ -67,10 +71,9 @@ public class LoginTest extends BaseTest {
                     .goToCompleteTask()
                     .selectTaskByName()
                     .clickOnUncompleteTaskBtn();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            File file  = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             try {
                 FileUtils.copyFile(file, new File("Screenshot.jpg"));
             } catch (IOException e1) {

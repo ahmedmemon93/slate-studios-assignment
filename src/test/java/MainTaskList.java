@@ -2,13 +2,18 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import pages.AddTask;
+import pages.BaseTest;
 
 import java.util.List;
 
+/**
+ * This class is the main screen that appears after login.
+ * This contains navigation to left panel and adding task etc.
+ */
 public class MainTaskList extends BaseTest {
     @FindBy(xpath = "//android.widget.ImageButton[@content-desc=\"Change the current view\"]")
     private AndroidElement leftPanelMenu;
@@ -82,8 +87,8 @@ public class MainTaskList extends BaseTest {
 
     public MainTaskList selectMoreOption(String optionName) {
         moreOptions.click();
-        AndroidElement and = findElementByXpath("//hierarchy/android.widget.FrameLayout/android.widget.FrameLayout");
-        System.out.println("valueIs:"+ and.getLocation().getY()+" x: " +and.getLocation().getX());
+        AndroidElement optionMenu = findElementByXpath("//hierarchy/android.widget.FrameLayout/android.widget.FrameLayout");
+        System.out.println("valueIs:"+ optionMenu.getLocation().getY()+" x: " +optionMenu.getLocation().getX());
         findElementByXpath("//android.widget.LinearLayout//android.widget.TextView[@text='" + optionName + "']").click();
         return this;
     }
